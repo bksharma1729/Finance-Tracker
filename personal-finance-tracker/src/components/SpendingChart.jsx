@@ -122,7 +122,7 @@ function DashboardCharts({ transactions = [] }) {
               <Tooltip
                 formatter={currencyFormat}
                 contentStyle={{
-                  backgroundColor: "var(--surface-elevated, rgba(15, 23, 42, 0.95))",
+                  backgroundColor: "var(--surface-elevated, rgba(188, 196, 215, 0.95))",
                   border: "1px solid var(--color-border-muted, #334155)",
                   borderRadius: "8px",
                   color: "var(--color-text, #f1f5f9)",
@@ -145,7 +145,7 @@ function DashboardCharts({ transactions = [] }) {
                 <Tooltip
                   formatter={currencyFormat}
                   contentStyle={{
-                    backgroundColor: "var(--surface-elevated, rgba(15, 23, 42, 0.95))",
+                    backgroundColor: "var(--surface-elevated, rgba(223, 226, 232, 0.95))",
                     border: "1px solid var(--color-border-muted, #334155)",
                     borderRadius: "8px",
                     color: "var(--color-text, #f1f5f9)",
@@ -206,7 +206,7 @@ function DashboardCharts({ transactions = [] }) {
                   <Tooltip
                     formatter={currencyFormat}
                     contentStyle={{
-                      backgroundColor: "var(--surface-elevated, rgba(15, 23, 42, 0.95))",
+                      backgroundColor: "var(--surface-elevated, rgba(231, 232, 235, 0.95))",
                       border: "1px solid var(--color-border-muted, #334155)",
                       borderRadius: "8px",
                       color: "var(--color-text, #f1f5f9)",
