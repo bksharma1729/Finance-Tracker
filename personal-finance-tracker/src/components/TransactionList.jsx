@@ -46,16 +46,21 @@ function TransactionList({ transactions, onEdit, onDelete }) {
         <tbody>
           {transactions.map((tx) => (
             <tr key={tx.id}>
-              <td>{tx.title}</td>
-              <td className={tx.type === "income" ? "pill income" : "pill expense"}>
-                {tx.type === "income" ? "Income" : "Expense"}
+              <td data-label="Title">{tx.title}</td>
+              <td data-label="Type">
+                <span className={tx.type === "income" ? "pill income" : "pill expense"}>
+                  {tx.type === "income" ? "Income" : "Expense"}
+                </span>
               </td>
-              <td>{tx.category || "-"}</td>
-              <td className={tx.type === "income" ? "amount-income" : "amount-expense"}>
+              <td data-label="Category">{tx.category || "-"}</td>
+              <td
+                data-label="Amount"
+                className={tx.type === "income" ? "amount-income" : "amount-expense"}
+              >
                 {formatCurrency(Number(tx.amount) || 0)}
               </td>
-              <td>{formatDate(tx.date)}</td>
-              <td>
+              <td data-label="Date">{formatDate(tx.date)}</td>
+              <td data-label="Actions">
                 <div className="row-actions">
                   <button type="button" onClick={() => onEdit(tx)}>
                     Edit
@@ -78,4 +83,3 @@ function TransactionList({ transactions, onEdit, onDelete }) {
 }
 
 export default TransactionList;
-

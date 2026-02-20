@@ -889,3 +889,254 @@ body.light-theme .auth-card {
 }
 
 
+
+@media (max-width: 1024px) {
+  .dashboard-content {
+    padding: 28px 20px 110px;
+    gap: 32px;
+  }
+
+  .chart-card,
+  .summary-card {
+    padding: 24px 20px;
+  }
+
+  .summary-value {
+    font-size: 26px;
+    word-break: break-word;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-content {
+    padding: 20px 14px 96px;
+    gap: 24px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 28px;
+  }
+
+  .dashboard-header .subtitle {
+    font-size: 14px;
+  }
+
+  .chart-card__title,
+  .filters-section h2,
+  .section-header h2 {
+    font-size: 18px;
+  }
+
+  .chart-card,
+  .chart-box,
+  .summary-card,
+  .transactions-table {
+    border-radius: 12px;
+  }
+
+  .chart-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .transactions-table {
+    overflow-x: auto;
+  }
+
+  .transactions-table table {
+    min-width: 720px;
+    font-size: 14px;
+  }
+
+  .transactions-table th,
+  .transactions-table td {
+    padding: 14px 12px;
+    white-space: nowrap;
+  }
+
+  .row-actions {
+    flex-wrap: wrap;
+  }
+
+  .floating-add-btn {
+    right: 16px;
+    bottom: 16px;
+    width: 56px;
+    height: 56px;
+    font-size: 28px;
+  }
+
+  .modal {
+    max-width: calc(100vw - 20px);
+    padding: 28px 18px;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+  }
+
+  .modal-actions button,
+  .modal-actions .primary-btn,
+  .modal-actions .secondary-btn {
+    width: 100%;
+  }
+
+  .notification-popup {
+    left: 14px;
+    right: 14px;
+    top: 14px;
+    width: auto;
+    padding: 12px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .summary-card__icon {
+    font-size: 26px;
+    margin-bottom: 12px;
+  }
+
+  .summary-value {
+    font-size: 22px;
+  }
+
+  .pill {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .section-header .secondary-btn {
+    width: 100%;
+  }
+}
+
+/* Readability + stronger mobile responsiveness */
+@media (max-width: 768px) {
+  body {
+    font-size: 17px;
+    line-height: 1.55;
+  }
+
+  .app-title {
+    font-size: 26px;
+  }
+
+  .app-subtitle,
+  .auth-form label,
+  .auth-error,
+  .filters input[type="text"],
+  .filters select,
+  .filters input[type="date"],
+  .transaction-form input,
+  .transaction-form select,
+  .auth-form input,
+  .row-actions button,
+  .primary-btn,
+  .secondary-btn {
+    font-size: 16px;
+  }
+
+  .filters input[type="text"],
+  .filters select,
+  .filters input[type="date"],
+  .transaction-form input,
+  .transaction-form select,
+  .auth-form input {
+    min-height: 44px;
+  }
+
+  .auth-card {
+    padding: 24px 18px;
+    border-radius: 18px;
+  }
+
+  .transactions-table {
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  .transactions-table table,
+  .transactions-table thead,
+  .transactions-table tbody,
+  .transactions-table tr,
+  .transactions-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .transactions-table thead {
+    display: none;
+  }
+
+  .transactions-table tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .transactions-table tbody tr {
+    border: 1.5px solid var(--color-border);
+    border-radius: 14px;
+    padding: 12px;
+    background: var(--color-card);
+  }
+
+  .transactions-table td {
+    padding: 8px 0;
+    border: none;
+    white-space: normal;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 15px;
+  }
+
+  .transactions-table td::before {
+    content: attr(data-label);
+    color: var(--color-text-muted);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+    flex: 0 0 90px;
+  }
+
+  .transactions-table td:last-child {
+    padding-top: 12px;
+  }
+
+  .row-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-content {
+    padding: 16px 12px 92px;
+  }
+
+  .summary-value {
+    font-size: 24px;
+  }
+
+  .chart-card,
+  .chart-box,
+  .summary-card,
+  .auth-card {
+    padding: 16px;
+  }
+
+  .navbar {
+    border-radius: 0;
+  }
+}
