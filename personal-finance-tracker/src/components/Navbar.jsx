@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import "./Navbar.css";
+import "./navbar.css";
 import { useAuth } from "../context/AuthContext.jsx";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -8,6 +8,7 @@ function Navbar({ onAddClick, onToggleTheme, isDark }) {
   const navigate = useNavigate();
   const location = useLocation();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
 
   const handleLogout = async () => {
@@ -31,6 +32,28 @@ function Navbar({ onAddClick, onToggleTheme, isDark }) {
 
   const isDashboard = location.pathname === "/dashboard";
 
+  const closeMenus = () => {
+    setDropdownOpen(false);
+    setMobileMenuOpen(false);
+  };
+
+
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -49,14 +72,33 @@ function Navbar({ onAddClick, onToggleTheme, isDark }) {
         💰 FinanceTracker
       </div>
 
-      <ul className="nav-links">
+      <button
+        type="button"
+        className={`menu-toggle ${mobileMenuOpen ? "open" : ""}`}
+        aria-label="Toggle navigation"
+        onClick={() => setMobileMenuOpen((prev) => !prev)}
+      >
+        ☰
+      </button>
+
+      <ul className={`nav-links ${mobileMenuOpen ? "open" : ""}`}>
         <li
           className={isDashboard ? "active" : ""}
-          onClick={() => navigate("/dashboard")}
+          onClick={() => {
+            navigate("/dashboard");
+            closeMenus();
+          }}
         >
           Dashboard
         </li>
-        <li onClick={onAddClick}>Add Transaction</li>
+        <li
+          onClick={() => {
+            onAddClick();
+            closeMenus();
+          }}
+        >
+          Add Transaction
+        </li>
       </ul>
 
       <div className="navbar-right">
