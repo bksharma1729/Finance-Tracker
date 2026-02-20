@@ -339,35 +339,3 @@ body.light-theme .profile-dropdown {
     display: none;
   }
 }
-
-@media (max-width: 768px) {
-  .navbar .logo {
-    font-size: 18px;
-  }
-
-  .nav-links li {
-    font-size: 16px;
-  }
-
-  .theme-toggle,
-  .profile .avatar,
-  .menu-toggle {
-    width: 44px;
-    height: 44px;
-  }
-}
-
-@media (max-width: 480px) {
-  .navbar {
-    padding: 10px 12px;
-  }
-
-  .navbar .logo {
-    font-size: 16px;
-  }
-
-  .nav-links li {
-    font-size: 15px;
-    padding: 12px;
-  }
-}
