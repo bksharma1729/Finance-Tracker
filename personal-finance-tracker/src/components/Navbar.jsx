@@ -2,8 +2,9 @@ import { useState, useEffect, useRef } from "react";
 import "./navbar.css";
 import { useAuth } from "../context/AuthContext.jsx";
 import { useLocation, useNavigate } from "react-router-dom";
+import logoImg from "../assets/logo.png";
 
-function Navbar({ onAddClick, onToggleTheme, isDark }) {
+function Navbar({ onAddClick, onToggleTheme, isDark, onSupportClick }) {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -16,18 +17,17 @@ function Navbar({ onAddClick, onToggleTheme, isDark }) {
       await logout();
       navigate("/login");
     } catch (error) {
-      // In a real app you might show a toast; for now we silently fail
       console.error("Logout failed", error);
     }
   };
 
   const initials = user?.email
     ? user.email
-        .split("@")[0]
-        .split(".")
-        .map((part) => part[0]?.toUpperCase() || "")
-        .join("")
-        .slice(0, 2)
+      .split("@")[0]
+      .split(".")
+      .map((part) => part[0]?.toUpperCase() || "")
+      .join("")
+      .slice(0, 2)
     : "U";
 
   const isDashboard = location.pathname === "/dashboard";
@@ -51,8 +51,60 @@ function Navbar({ onAddClick, onToggleTheme, isDark }) {
 
   return (
     <nav className="navbar">
-      <div className="logo" onClick={() => navigate("/dashboard")}>
-        💰 FinanceTracker
+      <div className="navbar-left">
+        <div
+  onClick={() => navigate("/dashboard")}
+  style={{
+    padding: '10px 26px',
+    borderRadius: '999px',
+    fontSize: '28px',
+    fontWeight: '700',
+    fontFamily: 'Inter, sans-serif',
+    cursor: 'pointer',
+    background: 'linear-gradient(135deg, #abadedff, #a1bbe6ff)',
+    color: '#ffffff',
+    letterSpacing: '1px',
+    boxShadow: '0 8px 20px rgba(91,95,239,0.35)',
+    transition: 'transform 0.25s ease, box-shadow 0.25s ease'
+  }}
+  onMouseEnter={(e) => {
+    e.currentTarget.style.transform = 'translateY(-2px)';
+    e.currentTarget.style.boxShadow = '0 12px 28px rgba(91,95,239,0.5)';
+  }}
+  onMouseLeave={(e) => {
+    e.currentTarget.style.transform = 'translateY(0)';
+    e.currentTarget.style.boxShadow = '0 8px 20px rgba(91,95,239,0.35)';
+  }}
+>
+  FinTrack
+</div>
+        <ul className={`nav-links ${mobileMenuOpen ? "open" : ""}`}>
+          <li
+            className={isDashboard ? "active" : ""}
+            onClick={() => {
+              navigate("/dashboard");
+              closeMenus();
+            }}
+          >
+            Dashboard
+          </li>
+          <li
+            onClick={() => {
+              onAddClick();
+              closeMenus();
+            }}
+          >
+            + Add Transaction
+          </li>
+          <li
+            onClick={() => {
+              onSupportClick?.();
+              closeMenus();
+            }}
+          >
+            Support
+          </li>
+        </ul>
       </div>
 
       <button
@@ -63,26 +115,6 @@ function Navbar({ onAddClick, onToggleTheme, isDark }) {
       >
         ☰
       </button>
-
-      <ul className={`nav-links ${mobileMenuOpen ? "open" : ""}`}>
-        <li
-          className={isDashboard ? "active" : ""}
-          onClick={() => {
-            navigate("/dashboard");
-            closeMenus();
-          }}
-        >
-          Dashboard
-        </li>
-        <li
-          onClick={() => {
-            onAddClick();
-            closeMenus();
-          }}
-        >
-          Add Transaction
-        </li>
-      </ul>
 
       <div className="navbar-right">
         <button
@@ -138,6 +170,17 @@ function Navbar({ onAddClick, onToggleTheme, isDark }) {
               >
                 <span>{isDark ? "☀️" : "🌙"}</span>
                 <span>{isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}</span>
+              </button>
+              <button
+                type="button"
+                className="profile-dropdown__item"
+                onClick={() => {
+                  setDropdownOpen(false);
+                  onSupportClick?.();
+                }}
+              >
+                <span>🔄</span>
+                <span>Reset Data</span>
               </button>
               <button
                 type="button"

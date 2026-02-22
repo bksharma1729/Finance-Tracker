@@ -1,11 +1,16 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
+/* =============================================
+   CENTRALIZED THEME VARIABLE SYSTEM
+   All colors referenced via CSS variables only.
+   Never use hardcoded hex values in components.
+   ============================================= */
 
 :root {
   /* Spacing scale (8px base) */
@@ -18,54 +23,111 @@
   --space-7: 40px;
   --space-8: 48px;
 
-  /* Premium Color System */
-  --color-bg: #0B1120;
-  --color-surface: rgba(22, 28, 48, 0.92);
-  --color-surface-elevated: rgba(22, 28, 48, 0.98);
-  --color-surface-subtle: rgba(22, 28, 48, 0.7);
-  --color-card-gradient: linear-gradient(135deg, #10192b 60%, #1e293b 100%);
-  --color-border: rgba(59, 130, 246, 0.12);
-  --color-border-muted: rgba(59, 130, 246, 0.07);
+  /* ---- LIGHT THEME DEFAULTS ---- */
+  --color-bg: #F8FAFC;
+  --color-surface: #FFFFFF;
+  --color-surface-elevated: #FFFFFF;
+  --color-surface-subtle: #F1F5F9;
+  --color-card-gradient: #FFFFFF;
+  --color-border: rgba(15, 23, 42, 0.08);
+  --color-border-muted: rgba(15, 23, 42, 0.04);
+  --color-text: #0F172A;
+  --color-text-muted: #64748B;
+  --color-text-subtle: #94A3B8;
+  --color-navbar: rgba(248, 250, 252, 0.8);
+  --color-card: #FFFFFF;
+  --color-glass: rgba(255, 255, 255, 0.8);
+
+  /* ---- SEMANTIC ACCENTS (theme-invariant) ---- */
+  --color-primary: #5B5FEF;
+  --color-primary-hover: #4a4ed0;
+  --color-income: #16C784;
+  --color-expense: #FF5A5F;
+  --color-accent: #5B5FEF;
+  --color-danger: #FF5A5F;
+  --color-netloss: #FF5A5F;
+
+  /* ---- SHADOW SYSTEM ---- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0 2px 4px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(91, 95, 239, 0.08), 0 16px 40px rgba(0, 0, 0, 0.04);
+  --border-radius-card: 20px;
+
+  /* ---- TRANSITIONS ---- */
+  --transition-theme: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =============================================
+   LIGHT THEME (explicit class override)
+   ============================================= */
+body.light-theme {
+  --color-bg: #F8FAFC;
+  --color-surface: #FFFFFF;
+  --color-surface-elevated: #FFFFFF;
+  --color-surface-subtle: #F1F5F9;
+  --color-card-gradient: #FFFFFF;
+  --color-border: rgba(15, 23, 42, 0.08);
+  --color-border-muted: rgba(15, 23, 42, 0.04);
+  --color-text: #0F172A;
+  --color-text-muted: #64748B;
+  --color-text-subtle: #94A3B8;
+  --color-navbar: rgba(248, 250, 252, 0.8);
+  --color-card: #FFFFFF;
+  --color-glass: rgba(255, 255, 255, 0.8);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* =============================================
+   DARK THEME
+   ============================================= */
+body.dark-theme {
+  --color-bg: #0F172A;
+  --color-surface: #1E293B;
+  --color-surface-elevated: #263548;
+  --color-surface-subtle: #1A2942;
+  --color-card-gradient: #1E293B;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-muted: rgba(255, 255, 255, 0.04);
   --color-text: #F1F5F9;
   --color-text-muted: #94A3B8;
-  --color-text-subtle: #64748b;
+  --color-text-subtle: #64748B;
+  --color-navbar: rgba(15, 23, 42, 0.85);
+  --color-card: #1E293B;
+  --color-glass: rgba(30, 41, 59, 0.9);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(0, 0, 0, 0.2);
+  --shadow-card-hover: 0 2px 4px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(91, 95, 239, 0.15), 0 16px 40px rgba(0, 0, 0, 0.2);
+}
 
-  /* Accent colors */
-  --color-income: #10B981;
-  --color-expense: #F97316;
-  --color-accent: #3B82F6;
-  --color-danger: #EF4444;
-  --color-netloss: #EF4444;
-  --color-navbar: #10192b;
-  --color-card: #151c2e;
-  --color-glass: rgba(59, 130, 246, 0.08);
+html {
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  background: linear-gradient(135deg, #0B1120 0%, #10192b 100%);
-  background-attachment: fixed;
+  background: var(--color-bg);
   color: var(--color-text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  line-height: 1.7;
-  font-size: 16px;
+  line-height: 1.6;
+  font-size: clamp(14px, 2.5vw, 15px);
   min-height: 100vh;
+  overflow-x: hidden;
+  width: 100%;
+  transition: var(--transition-theme);
 }
 
-body.light-theme {
-  --color-bg: #f9fafb;
-  --color-surface: rgba(255, 255, 255, 0.9);
-  --color-surface-elevated: rgba(255, 255, 255, 0.98);
-  --color-surface-subtle: rgba(248, 250, 252, 0.8);
-  --color-card-gradient: linear-gradient(135deg, #f9fafb 60%, #e0e7ef 100%);
-  --color-border: rgba(59, 130, 246, 0.10);
-  --color-border-muted: rgba(59, 130, 246, 0.05);
-  --color-text: #0B1120;
-  --color-text-muted: #64748b;
-  --color-text-subtle: #94a3b8;
-  --color-navbar: #fff;
-  --color-card: #fff;
-  --color-glass: rgba(59, 130, 246, 0.04);
-  background: linear-gradient(135deg, #f9fafb 0%, #e0e7ef 100%);
+/* Ensure all interactive elements inherit smooth transitions */
+button,
+input,
+select,
+a,
+[class*="card"],
+[class*="nav"],
+[class*="dropdown"] {
+  transition: var(--transition-theme);
 }

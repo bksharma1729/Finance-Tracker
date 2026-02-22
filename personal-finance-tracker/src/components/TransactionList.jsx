@@ -31,53 +31,59 @@ function TransactionList({ transactions, onEdit, onDelete }) {
   }
 
   return (
-    <div className="transactions-table">
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Type</th>
-            <th>Category</th>
-            <th>Amount</th>
-            <th>Date</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {transactions.map((tx) => (
-            <tr key={tx.id}>
-              <td data-label="Title">{tx.title}</td>
-              <td data-label="Type">
-                <span className={tx.type === "income" ? "pill income" : "pill expense"}>
-                  {tx.type === "income" ? "Income" : "Expense"}
-                </span>
-              </td>
-              <td data-label="Category">{tx.category || "-"}</td>
-              <td
-                data-label="Amount"
-                className={tx.type === "income" ? "amount-income" : "amount-expense"}
+    <div className="transactions-list-container">
+      {transactions.map((tx) => (
+        <div key={tx.id} className={`transaction-card transaction-card--${tx.type}`}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            <div style={{
+              width: '40px', height: '40px',
+              borderRadius: '50%',
+              background: tx.type === 'income' ? 'rgba(22, 199, 132, 0.15)' : 'rgba(255, 90, 95, 0.15)',
+              color: tx.type === 'income' ? 'var(--color-income)' : 'var(--color-danger)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: '20px'
+            }}>
+              {tx.type === 'income' ? '↓' : '↑'}
+            </div>
+            <div>
+              <div style={{ fontWeight: '600', fontSize: '15px', color: 'var(--color-text)' }}>{tx.title}</div>
+              <div style={{ fontSize: '13px', color: 'var(--color-text-muted)', marginTop: '4px' }}>{formatDate(tx.date)}</div>
+            </div>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+            <div style={{ textAlign: 'right' }}>
+              <div style={{
+                fontWeight: '600', fontSize: '15px',
+                color: tx.type === 'income' ? 'var(--color-income)' : 'var(--color-text)'
+              }}>
+                {tx.type === 'income' ? '+' : '-'}{formatCurrency(Number(tx.amount) || 0)}
+              </div>
+              <div style={{ fontSize: '13px', color: 'var(--color-text-muted)', marginTop: '4px' }}>
+                {tx.category || "General"}
+              </div>
+            </div>
+
+            <div className="transaction-actions">
+              <button
+                className="action-btn"
+                onClick={() => onEdit(tx)}
+                title="Edit"
+                aria-label="Edit transaction"
               >
-                {formatCurrency(Number(tx.amount) || 0)}
-              </td>
-              <td data-label="Date">{formatDate(tx.date)}</td>
-              <td data-label="Actions">
-                <div className="row-actions">
-                  <button type="button" onClick={() => onEdit(tx)}>
-                    Edit
-                  </button>
-                  <button
-                    type="button"
-                    className="danger"
-                    onClick={() => onDelete(tx.id)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+                ✎
+              </button>
+              <button
+                className="action-btn action-btn--delete"
+                onClick={() => onDelete(tx.id)}
+                title="Delete"
+                aria-label="Delete transaction"
+              >
+                ×
+              </button>
+            </div>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

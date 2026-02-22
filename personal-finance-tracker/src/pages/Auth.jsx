@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
+import logoImg from "../assets/logo.png";
 
 function AuthPage() {
   const { login, register } = useAuth();
@@ -38,8 +39,19 @@ function AuthPage() {
 
   return (
     <div className="auth-page">
-      <div className="auth-card">
-        <h1 className="app-title">💰 Personal Finance Tracker</h1>
+      <div className="auth-card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <img
+          src={logoImg}
+          alt="FinanceTracker Logo"
+          style={{
+            height: '120px',
+            width: 'auto',
+            marginBottom: '24px',
+            filter: 'drop-shadow(0 8px 16px rgba(0, 0, 0, 0.12))',
+            imageRendering: '-webkit-optimize-contrast',
+            display: 'block'
+          }}
+        />
         <p className="app-subtitle">
           {isLogin
             ? "Welcome back! Log in to manage your finances."
@@ -107,8 +119,8 @@ function AuthPage() {
             {loading
               ? "Please wait..."
               : isLogin
-              ? "Login to Dashboard"
-              : "Create Account"}
+                ? "Login to Dashboard"
+                : "Create Account"}
           </button>
         </form>
       </div>
