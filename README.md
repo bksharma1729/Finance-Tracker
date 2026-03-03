@@ -1,3 +1,4 @@
+#main UI
 <img width="1914" height="862" alt="image" src="https://github.com/user-attachments/assets/e1455500-e4ac-46c2-a71d-e350788003df" />
 
 
@@ -8,7 +9,7 @@ FinTrack – Finance Tracker
 FinTrack is a modern personal finance dashboard built with React.
 It allows users to track income, expenses, and overall balance through a clean, fintech-inspired interface.
 
-✨ Features
+✨ Features ****
 
 📈 Dashboard overview (Balance, Income, Expenses)
 
@@ -22,7 +23,7 @@ It allows users to track income, expenses, and overall balance through a clean, 
 
 ⚡ Responsive and modern UI
 
-🛠 Tech Stack
+🛠 Tech Stack *****
 
 React.js
 
